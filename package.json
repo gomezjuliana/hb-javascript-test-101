@@ -1,10 +1,10 @@
 {
   "name": "hb-javascript-test-101",
   "version": "1.0.0",
-  "description": "",
+  "description": "This repository is containing examples of how to implement and test the first challenge given in the Bootcamp.",
   "private": true,
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/andrscrrn/hb-javascript-test-101/issues"
   },
-  "homepage": "https://github.com/andrscrrn/hb-javascript-test-101#readme"
+  "homepage": "https://github.com/andrscrrn/hb-javascript-test-101#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "jest": "^21.2.1"
+  }
 }
