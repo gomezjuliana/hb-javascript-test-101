@@ -7,10 +7,29 @@ export function generateRandomColor () {
 }
 
 export function filterNegativeNumbers (arr) {
+    const newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        const current = arr[i];
+        if (current > -1) {
+            newArr.push(current);
+        }
+    }
+    return newArr;
+}
+
+export function functionalFilterNegativeNumbers (arr) {
     return arr.filter(item => item > -1);
 }
 
 export function mapNumbersIntoStrings (arr) {
+    const newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        newArr.push(arr[i].toString());
+    }
+    return newArr;
+}
+
+export function functionalMapNumbersIntoStrings (arr) {
     return arr.map(item => item.toString());
 }
 
