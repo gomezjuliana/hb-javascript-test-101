@@ -1,0 +1,19 @@
+{
+  "name": "hb-javascript-test-101",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrscrrn/hb-javascript-test-101.git"
+  },
+  "author": "Andrés Carreño",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrscrrn/hb-javascript-test-101/issues"
+  },
+  "homepage": "https://github.com/andrscrrn/hb-javascript-test-101#readme"
+}
