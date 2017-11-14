@@ -4,7 +4,7 @@
   "description": "This repository is containing examples of how to implement and test the first challenge given in the Bootcamp.",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
