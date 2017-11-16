@@ -11,12 +11,22 @@ import {
 } from './index.js';
 
 describe('generateRandomColor', () => {
+    const KEYS = ['r', 'g', 'b'];
+    const color = generateRandomColor();
+
     it('should have "r", "g" and "b" as properties with numbers as values', () => {
-        expect(generateRandomColor()).toMatchObject(expect.objectContaining({
+        expect(color).toMatchObject(expect.objectContaining({
             r: expect.any(Number),
             g: expect.any(Number),
             b: expect.any(Number)
         }));
+    });
+
+    it('should have values in the range [0, 255]', () => {
+        for (const key of KEYS) {
+            expect(color[key]).toBeGreaterThanOrEqual(0);
+            expect(color[key]).toBeLessThanOrEqual(255);
+        }
     });
 });
 
