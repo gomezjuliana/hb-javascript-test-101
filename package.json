@@ -4,7 +4,8 @@
   "description": "This repository is containing examples of how to implement and test the first challenge given in the Bootcamp.",
   "private": true,
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "report-coverage": "cat ./coverage/lcov.info | codecov"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/andrscrrn/hb-javascript-test-101#readme",
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
+    "codecov.io": "^0.1.6",
     "jest": "^21.2.1"
   }
 }
