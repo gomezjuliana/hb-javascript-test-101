@@ -46,7 +46,7 @@ describe('filterNegativeNumbers', () => {
 
     it('should not modify the original array', () => {
         const arr = [-1, 0, 1];
-        const arrCopy = JSON.parse(JSON.stringify(arr));
+        const arrCopy = Array.from(arr);
         filterNegativeNumbers(arr);
         expect(arr).toEqual(arrCopy);
     });
