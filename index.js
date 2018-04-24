@@ -1,59 +1,66 @@
-export function generateRandomColor () {
-    return {
-        r: Math.floor(Math.random()*256),
-        g: Math.floor(Math.random()*256),
-        b: Math.floor(Math.random()*256)
+export function generateRandomColour() {
+  const max = 255
+  return {
+    r: Math.floor(Math.random() * Math.floor(max)),
+    b: Math.floor(Math.random() * Math.floor(max)),
+    g: Math.floor(Math.random() * Math.floor(max))
+  }
+}
+export function filterNegativeNumbers(arr){
+  let endResult = [];
+  for (let x = 0; x < arr.length; x++){
+    if (arr[x] >= 0){
+      endResult.push(arr[x])
     }
+  }
+  return endResult
 }
 
-export function filterNegativeNumbers (arr) {
-    const newArr = [];
-    for (let i = 0; i < arr.length; i++) {
-        const current = arr[i];
-        if (current > -1) {
-            newArr.push(current);
-        }
-    }
-    return newArr;
+ export function functionalFilterNegativeNumbers(arr){
+  return arr.filter(number => number >= 0)
 }
 
-export function functionalFilterNegativeNumbers (arr) {
-    return arr.filter(item => item > -1);
+export function mapNumbersIntoStrings(arr){
+  let endResult = [];
+  for (let x = 0; x < arr.length; x ++){
+    endResult.push(`${arr[x]}`)
+  }
+  return endResult;
 }
 
-export function mapNumbersIntoStrings (arr) {
-    const newArr = [];
-    for (let i = 0; i < arr.length; i++) {
-        newArr.push(arr[i].toString());
-    }
-    return newArr;
+export function functionalMapNumbersIntoStrings(arr){
+  return arr.map(number => `${number}`)
 }
 
-export function functionalMapNumbersIntoStrings (arr) {
-    return arr.map(item => item.toString());
+export function printType(value) {
+  return typeof(value)
 }
 
-export function printType (value) {
-    console.log(typeof value);
-}
-
-export function isPalindrome (str) {
-    const re = /[\W_]/g;
-    const lowRegStr = str.toLowerCase().replace(re, '');
-    const reverseStr = lowRegStr.split('').reverse().join(''); 
-    return reverseStr === lowRegStr;
+export function isPalindrome (str){
+  let reversedStr = str.split('').reverse().join('').toString();
+  if (str == reversedStr){ // since reversedStr is a string, we don't need to allow coersion
+    return true
+  } else return false
 }
 
 export class Person {
-    constructor (name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    printName () {
-        console.log(this.name);
-    }
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+  }
 }
 
-export function printOutPersonAge (personInstance) {
-    console.log(personInstance.age)
+export function printOutPersonAge (personInstance){
+  return personInstance.age;
 }
+
+// console.log(generateRandomColour())
+// console.log(filterNegativeNumbers([-5, -6, 0, 1, -4 ,7]))
+// console.log(functionalFilterNegativeNumbers([-5, -6, 0, 1, -4 ,7]))
+// console.log(mapNumbersIntoStrings([-5, -6, 0, 1, -4 ,7]))
+// console.log(functionalMapNumbersIntoStrings([-5, -6, 0, 1, -4 ,7]))
+// console.log(printType(1))
+// console.log(isPalindrome('racecar'));
+// console.log(new Person('Juliana', 27))
+// console.log(printOutPersonAge (new Person('Juliana', 27)))
+

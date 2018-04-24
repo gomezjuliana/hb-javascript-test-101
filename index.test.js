@@ -1,131 +1,67 @@
-import {
-    generateRandomColor,
-    filterNegativeNumbers,
-    functionalFilterNegativeNumbers,
-    mapNumbersIntoStrings,
-    functionalMapNumbersIntoStrings,
-    printType,
-    isPalindrome,
-    Person,
-    printOutPersonAge
-} from './index.js';
+import { generateRandomColour, filterNegativeNumbers, functionalFilterNegativeNumbers, mapNumbersIntoStrings, functionalMapNumbersIntoStrings, printType, isPalindrome, Person, printOutPersonAge} from './index.js';
 
-describe('generateRandomColor', () => {
-    const KEYS = ['r', 'g', 'b'];
-    const color = generateRandomColor();
 
-    it('should have "r", "g" and "b" as properties with numbers as values', () => {
-        expect(color).toMatchObject(expect.objectContaining({
-            r: expect.any(Number),
-            g: expect.any(Number),
-            b: expect.any(Number)
-        }));
+describe('Functions exercise', () => {
+  describe('random colour generator', () => {
+    it('should return a colour object with 3 random numbers between 0 and 255', () => {
+      expect(typeof generateRandomColour()).toEqual('object')
+      expect(Object.keys(generateRandomColour()).length).toEqual(3);
     });
-
-    it('should have values in the range [0, 255]', () => {
-        for (const key of KEYS) {
-            expect(color[key]).toBeGreaterThanOrEqual(0);
-            expect(color[key]).toBeLessThanOrEqual(255);
-        }
+  });
+  describe('filter negative numbers', () => {
+    it ('should filter out negative numbers out of an array', () => {
+      expect(filterNegativeNumbers([-5, -6, 0, 1, -4 ,7])).toEqual([0, 1, 7])
     });
-});
-
-describe('filterNegativeNumbers', () => {
-    it('should return a new array without negative numbers', () => {
-        const arr = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
-        expect(filterNegativeNumbers(arr)).toEqual([0, 1, 2, 3, 4, 5]);
-        expect(functionalFilterNegativeNumbers(arr)).toEqual([0, 1, 2, 3, 4, 5]);
-        expect(filterNegativeNumbers([0])).toEqual([0]);
-        expect(functionalFilterNegativeNumbers([0])).toEqual([0]);
+  });
+  describe('filter negative numbers v2', () => {
+    it ('should filter out negative numbers out of an array v2', () => {
+      expect(functionalFilterNegativeNumbers([-5, -6, 0, 1, -4 ,7])).toEqual([0, 1, 7])
     });
-
-    it('should return an empty array if all the values are negative', () => {
-        expect(filterNegativeNumbers([-1])).toEqual([]);
-        expect(functionalFilterNegativeNumbers([-1])).toEqual([]);
+  });
+  describe('map numbers into strings', () => {
+    it ('should map an array of numbers into an array of strings', () => {
+      expect(mapNumbersIntoStrings([-5, -6, 0, 1, -4 ,7])).toEqual(['-5', '-6', '0', '1', '-4' ,'7'])
     });
-
-    it('should not modify the original array', () => {
-        const arr = [-1, 0, 1];
-        const arrCopy = Array.from(arr);
-        filterNegativeNumbers(arr);
-        expect(arr).toEqual(arrCopy);
+  });
+  describe('map numbers into strings v2', () => {
+    it ('should map an array of numbers into an array of strings v2', () => {
+      expect(functionalMapNumbersIntoStrings([-5, -6, 0, 1, -4 ,7])).toEqual(['-5', '-6', '0', '1', '-4' ,'7'])
     });
-});
-
-describe('mapNumbersIntoStrings', () => {
-    it('should return a new array with strings', () => {
-        const arr = [-1, 0, 1];
-        expect(mapNumbersIntoStrings(arr)).toEqual(['-1', '0', '1']);
-        expect(functionalMapNumbersIntoStrings(arr)).toEqual(['-1', '0', '1']);
+  });
+  describe('print type', () => {
+    it ('should print number if it\'s a number', () => {
+      expect(printType(1)).toEqual('number')
     });
-
-    it('should return an empty array if the original array is empty', () => {
-        expect(mapNumbersIntoStrings([])).toEqual([]);
-        expect(functionalMapNumbersIntoStrings([])).toEqual([]);
+    it ('should print string if it\'s a string', () => {
+      expect(printType('hey')).toEqual('string')
     });
-
-    it('should not modify the original array', () => {
-        const arr = [-1, 0, 1];
-        const arrCopy = JSON.parse(JSON.stringify(arr));
-        mapNumbersIntoStrings(arr);
-        expect(arr).toEqual(arrCopy);
+    it ('should print object if it\'s an array', () => {
+      expect(printType([])).toEqual('object')
     });
-});
-
-describe('printType', () => {
-    beforeEach(() => {
-        global.console = {
-            log: jest.fn()
-        }
+    it ('should print object if it\'s an object', () => {
+      expect(printType({})).toEqual('object')
     });
-    it('should print in console the type', () => {
-        printType(1);
-        expect(global.console.log).toHaveBeenCalledWith('number');
+  });
+  describe('is palindrome', () => {
+    it ('should return true if it\'s a palindrome', () => {
+      expect(isPalindrome('racecar')).toEqual(true)
     });
-});
-
-describe('isPalindrome', () => {
-    it('should return true with a palindrome word', () => {
-        expect(isPalindrome('madam')).toBeTruthy();
+    it ('should return false if it\'s not a palindrome', () => {
+      expect(isPalindrome('hello')).toEqual(false)
     });
-    it('should return true with a palindrome phrase', () => {
-        expect(isPalindrome("A man, a plan, a canal. Panama")).toBeTruthy();
+  });
+  describe('create a Person using classes', () => {
+    it ('should create a new Person with that age and name', () => {
+      expect(new Person('Juliana', 27)).toEqual({name: 'Juliana', age: 27})
     });
-});
-
-describe('Person', () => {
-    let personInstance;
-
-    beforeAll(() => {
-        personInstance = new Person('John', 100);
-
-        global.console = {
-            log: jest.fn()
-        }; // Creating a spy function for the console.log
-    });
-
-    it('should return an instance with the correct values when calling it as a constructor', () => {
-        expect(personInstance).toMatchObject({
-            name: 'John',
-            age: 100
-        });
-    });
-
-    it('should print the Person instance name in the console', () => {
-        personInstance.printName();
-        expect(global.console.log).toHaveBeenCalledWith('John');
-    });
-});
-
-describe('printOutPersonAge', () => {
-    beforeEach(() => {
-        global.console = {
-            log: jest.fn()
-        } // Creating a spy function for the console.log
-    });
-
-    it('should print in console the age of the given instance', () => {
-        printOutPersonAge(new Person('John', 100));
-        expect(global.console.log).toHaveBeenCalledWith(100);
-    });
-});
+  });
+  describe('print age', () => {
+    const Person = {
+      name: 'Juliana',
+      age: 27
+    }
+    it ('should print the age of the person', () => {
+      expect(printOutPersonAge(Person)).toEqual(27)
+    })
+  })
+})
